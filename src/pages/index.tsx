@@ -1,4 +1,9 @@
+import * as React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import mock from '../api/mock';
+import HomeScreen from './HomeScreen';
+import CharacterList from './CharacterList';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const GET_CHAR = gql`
   query {
@@ -17,29 +22,22 @@ const Main = () => {
   console.log('data', data);
   console.log('loading', loading);
   console.log('error', error);
-  return (
-    <div>
-      {loading ? (
-        'Loading'
-      ) : (
-        <div>
-          <h2>Rick and Morty Characters</h2>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            {data.characters.results.map((character: any) => (
-              <CharacterCard {...character} />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+  const [keyword, setKeyword] = React.useState('');
+  const navigate = useNavigate();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log('submit');
+    navigate(`/search?keyword=${keyword}`);
+    setKeyword('');
+  };
 
-const CharacterCard = (character: any) => {
   return (
     <div>
-      <p>{character.name}</p>
-      <img src={character.image} alt={character.name} />
+      <HomeScreen
+        keyword={keyword}
+        setKeyword={setKeyword}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
