@@ -27,9 +27,11 @@ function App() {
     cache: new InMemoryCache(),
   });
   return (
-    <ApolloProvider client={client}>
-      <RouterProvider router={router} />
-    </ApolloProvider>
+    <div data-theme='dark'>
+      <ApolloProvider client={client}>
+        <RouterProvider router={router} />
+      </ApolloProvider>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
-import { gql } from "@apollo/client";
-import { ICharacterFilter } from "../types";
+import { gql } from '@apollo/client';
 
 export const GET_CHAR = gql`
   query {
@@ -12,48 +11,34 @@ export const GET_CHAR = gql`
     }
   }
 `;
-// characters(page: ${page}, filter: { name: ${keyword} }) {
-//     info {
-//         count
-//       	next
-//     }
-//     results {
-//       id
-//       name
-//       species
-//       image
-//     }
-// }
-
 
 export const GET_CHARACTERS = gql`
   query Characters($name: String!, $page: Int) {
     characters(page: $page, filter: { name: $name }) {
       info {
-          count
-          next
+        count
+        next
       }
       results {
         id
-          name
+        name
         species
         image
       }
+    }
   }
-}
 `;
 
 export const GET_CHARACTER = gql`
-  query Character($id: ID!){
+  query Character($id: ID!) {
     character(id: $id) {
       name
-      
-    status
-    species
-    type
-    gender
-    image
-    
+
+      status
+      species
+      type
+      gender
+      image
     }
   }
 `;
