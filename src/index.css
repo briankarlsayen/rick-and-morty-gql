@@ -31,5 +31,5 @@ label {
 }
 
 li {
-  @apply pt-2 flex justify-between;
+  @apply pt-4 flex justify-between;
 }
